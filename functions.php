@@ -200,3 +200,39 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+
+
+// Add Theme Color Meta Tag
+function fwd_theme_color(){
+  echo '<meta name="theme-color" content="#fff200">';
+}
+add_action( 'wp_head', 'fwd_theme_color');
+
+
+// Change the length of the excerpt
+function fwd_excerpt_length( $length ) {
+  return 20;
+}
+add_filter( 'excerpt_length', 'fwd_excerpt_length', 999 );
+
+
+
+// change the excerpt 'more text' 
+function fwd_excerpt_more( $more ){
+  return '... <a href="' . esc_url( get_permalink() ) .'">'. __( 'Continue Reading' ) .'</a>';
+}
+add_filter( 'excerpt_more','fwd_excerpt_more' );
+
+
+// Remove Block editor from pages using AFC
+function fwd_post_filter( $use_block_editor, $post ) {
+// Add IDs to the array
+  $page_ids = array( 91, 8 );
+    if ( in_array( $post->ID, $page_ids ) ) {
+      return false;
+    } else {
+      return $use_block_editor;
+    }
+}
+add_filter( 'use_block_editor_for_post', 'fwd_post_filter', 10, 2 );
