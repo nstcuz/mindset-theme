@@ -6,12 +6,12 @@
  *
  * @package FWD_Starter_Theme
  */
-
-if ( ! is_active_sidebar( 'sidebar-1' ) ) {
-	return;
+if ( is_page() && is_active_sidebar('sidebar-2')) {
+	echo "<aside id='secondary' class='widget-area'>";
+		dynamic_sidebar( 'sidebar-2' );
+	echo "</aside>";
+} else {
+	echo "<aside id='secondary' class='widget-area'>";
+		dynamic_sidebar( 'sidebar-1' );
+	echo "</aside>";
 }
-?>
-
-<aside id="secondary" class="widget-area">
-	<?php dynamic_sidebar( 'sidebar-1' ); ?>
-</aside><!-- #secondary -->
