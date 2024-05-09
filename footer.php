@@ -28,13 +28,15 @@
     <?php
         if ( !is_page('contact') && function_exists ( 'get_field' ) ) {
 
-            echo '<h3>Physical Address</h3>';
-            if ( get_field( 'physical_address', 15  ) ) {
+            // echo '<h3>Physical Address</h3>';
+            if ( get_field( 'physical_address', 15 ) ) {
               the_field( 'physical_address', 15 );
             }
-
-            echo '<h3>Email Address</h3>';
-            if ( get_field( 'email_address', 15) ) {
+            ?>
+            <br>
+            <?php
+            // echo '<h3>Email Address</h3>';
+            if ( get_field( 'email_address', 15 ) ) {
                 the_field( 'email_address', 15 );
             }
         } 
