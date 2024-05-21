@@ -14,18 +14,15 @@
 
 get_header();
 ?>
-
 	<main id="primary" class="site-main">
 
 		<?php
 		while ( have_posts() ) :
 			the_post();
-
 			// get_template_part( 'template-parts/content', 'none' );
-
 			?>
-
 				<section class="home-intro"></section>
+          <h1><?php the_title(); ?></h1>
           <?php the_post_thumbnail( 'large' ); ?>
           <?php
             if (function_exists('get_field')){
@@ -36,6 +33,7 @@ get_header();
           ?>
     <section class="home-work">
       <h2>Featured Works</h2>
+      <div class="work-article">
     <?php
       $args = array(
         'post_type'      => 'fwd-work',
@@ -64,6 +62,7 @@ get_header();
         wp_reset_postdata();
       }
     ?>
+    </div>
     </section>
 
 				<section class="home-work"></section>
@@ -99,10 +98,38 @@ get_header();
             }
           ?>
 
-				<section class="home-slider"></section>
+    <section class="home-slider">
+      <?php
+      $args = array(
+        'post_type' => 'fwd-testimonial',
+        'posts_per_page' => -1
+      );
+
+      $query = new WP_Query($args);
+
+      if ($query->have_posts()): ?>
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            <?php while ($query->have_posts()):
+              $query->the_post(); ?>
+              <div class="swiper-slide">
+                <?php the_content(); ?>
+              </div>
+            <?php endwhile; ?>
+          </div>
+          <div class="swiper-pagination"></div>
+          <button class="swiper-button-prev"></button>
+          <button class="swiper-button-next"></button>
+        </div>
+        <?php
+        wp_reset_postdata();
+      endif;
+      ?>
+    </section>
 
 				<section class="home-blog">			
 					<h2><?php esc_html_e( 'Latest Blog Posts', 'fwd' ); ?></h2>
+          <div class="work-article">
 					<?php
 					$args = array(
 						'post_type'      => 'post',
@@ -125,6 +152,7 @@ get_header();
 						wp_reset_postdata();
 					}
 					?>
+          </div>
 				</section>
 
 			<?php
@@ -134,5 +162,5 @@ get_header();
 	</main><!-- #primary -->
 
 <?php
-get_sidebar();
+// get_sidebar();
 get_footer();

@@ -41,7 +41,7 @@ get_header();
 
     $query = new WP_Query( $args );
     if($query -> have_posts()) {
-    echo "<nav>";
+    echo '<nav class="service-nav">';
       while($query -> have_posts()){
        $query -> the_post(); 
         ?>
@@ -105,5 +105,5 @@ if ( $terms && ! is_wp_error( $terms ) ) {
 	</main><!-- #primary -->
 
 <?php
-get_sidebar();
+// get_sidebar();
 get_footer();

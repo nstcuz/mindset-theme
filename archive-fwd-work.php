@@ -37,6 +37,7 @@ get_header();
     $query = new WP_Query( $args );
     if($query -> have_posts()) {
       echo '<section class="work-section"><h2>Web</h2>';
+      echo '<div class="work-article">';
       while($query -> have_posts()){
        $query -> the_post(); 
         ?>
@@ -50,11 +51,12 @@ get_header();
         <?php
         }
       wp_reset_postdata();
+      echo '</div>';
       echo '</section>';
     };
     ?>
 
-<?php
+ <?php
     $args = array(
       'post_type'      => 'fwd-work',
       'posts_per_page' => -1,
@@ -70,6 +72,7 @@ get_header();
     $query = new WP_Query( $args );
     if($query -> have_posts()) {
       echo '<section class="work-section" ><h2>' . esc_html__('Photo') . '</h2>';
+      echo '<div class="work-article">';
       while($query -> have_posts()){
        $query -> the_post(); 
         ?>
@@ -83,6 +86,8 @@ get_header();
         <?php
         }
       wp_reset_postdata();
+      echo '</div>';
+      echo '</section>';
     }
     ?>
 

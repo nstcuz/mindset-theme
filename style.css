@@ -35,6 +35,8 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	- Forms
 	- SVGs
 # Layouts
+    - mobile / desktop grid
+	-
 # Components
 	- Header
 	- Navigation
@@ -406,7 +408,8 @@ select,
 optgroup,
 textarea {
 	color: #404040;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-family: 'Open Sans', sans-serif;
+	/* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif; */
 	font-size: 1rem;
 	line-height: 1.5;
 }
@@ -419,6 +422,7 @@ h5,
 h6 {
 	clear: both;
 	margin: .75em 0 .25em;
+	font-family: 'Roboto', sans-serif;
 }
 
 h1 {
@@ -721,12 +725,32 @@ svg path {
 	}
 
 	.no-sidebar .site,
-	.page-template-full-width .site {
+	.page-template-full-width .site,
+	.page-id-8 .site
+	{
 		grid-template-columns: 1fr minmax(0, 1000px) 1fr;
 		grid-template-areas:
 			"header header header"
 			". main ."
 			"footer footer footer";
+	}
+	
+	.home-blog, .home-work {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.work-section {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.work-article {
+		display: flex;
+	}
+
+	.home-blog article, .home-work article, .work-section article{
+		margin-right: 8px;
 	}
 
 	.site-header {
@@ -859,6 +883,22 @@ svg path {
 	color: #fff;
 }
 
+.page-id-17 .service-nav {
+	border: 2px dashed #9e9828;
+	padding: 1rem 0rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.page-id-17 .service-nav a {
+	margin-right: 1rem;
+}
+
+.page-id-17 .service-nav a:hover {
+	border-bottom: 1px solid #9e9828;
+}
+
 @media screen and (min-width: 50em) {
 	.menu-toggle {
 		display: none;
@@ -979,6 +1019,14 @@ svg path {
 	grid-gap: 2em;
 }
 
+/* About page */
+.page-id-11 main .wp-block-pullquote {
+	border: none;
+	padding: 0;
+	text-align: left;
+	font-size: 1rem;
+}
+
 /* Footer
 --------------------------------------------- */
 .site-footer {
@@ -1035,6 +1083,19 @@ svg path {
 	font-size: .75rem;
 	text-align: center;
 	margin-top: 2rem;
+}
+
+#scroll-top {
+	background: transparent;
+	border: none;
+	padding: 1rem;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	cursor: pointer;
+	transition: all ease 0.3s;
+	opacity: 0;
+	color: #fff200;
 }
 
 @media screen and (min-width: 43.75em) {

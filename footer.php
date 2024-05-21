@@ -15,6 +15,29 @@
 		<div class="footer-contact">
 			
 		</div><!-- .footer-contact -->
+
+    <?php
+        if ( !is_page('contact') && function_exists ( 'get_field' ) ) {
+            // echo '<h3>Physical Address</h3>';
+			?> <div class="footer-contact-left"> <?php
+            if ( get_field( 'physical_address', 15 ) ) {
+				get_template_part('images/location');
+				the_field( 'physical_address', 15 );
+            }
+			?> 
+			</div> 
+			<div class="footer-contact-right">
+            <?php
+            if ( get_field( 'email_address', 15 ) ) {
+                the_field( 'email_address', 15 );
+            }
+        } 
+
+		// scroll to top button
+		get_template_part('images/scroll-to-top');
+    ?>
+	</div>
+
 		<div class="footer-menus">
 			<nav id="footer-navigation" class="footer-navigation">
 				<?php wp_nav_menu( array( 'theme_location' => 'footer-left') ); ?>
@@ -22,25 +45,11 @@
 
 			<nav id="footer-navigation" class="footer-navigation">
 				<?php wp_nav_menu( array( 'theme_location' => 'footer-right') ); ?>
+				<!-- <?php  ?> -->
 			</nav>
 		</div><!-- .footer-menus -->
 
-    <?php
-        if ( !is_page('contact') && function_exists ( 'get_field' ) ) {
 
-            // echo '<h3>Physical Address</h3>';
-            if ( get_field( 'physical_address', 15 ) ) {
-              the_field( 'physical_address', 15 );
-            }
-            ?>
-            <br>
-            <?php
-            // echo '<h3>Email Address</h3>';
-            if ( get_field( 'email_address', 15 ) ) {
-                the_field( 'email_address', 15 );
-            }
-        } 
-    ?>
 
 		<div class="site-info">
 			<?php esc_html_e(''); ?><a href="<?php echo esc_url(__('http://localhost/mindset/privacy-policy-2/', 'fwd')); ?>"><?php esc_html_e('Privacy Policay', 'fwd'); ?></a>
